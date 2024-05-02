@@ -1,0 +1,52 @@
+{% extends 'event/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Create Employee</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            <input type="text" class="form-control" id="id_name" name="name" placeholder="Enter employee name">
+        </div>
+        <div class="form-group">
+            <label for="id_employee_id">Employee ID:</label>
+            <input type="text" class="form-control" id="id_employee_id" name="employee_id" placeholder="Enter employee ID">
+        </div>
+        <div class="form-group">
+            <label for="id_department">Department:</label>
+            <input type="text" class="form-control" id="id_department" name="department" placeholder="Enter department">
+        </div>
+        <div class="form-group">
+            <label for="id_job_title">Job Title:</label>
+            <input type="text" class="form-control" id="id_job_title" name="job_title" placeholder="Enter job title">
+        </div>
+        <div class="form-group">
+            <label for="id_basic_salary">Basic Salary:</label>
+            <input type="number" class="form-control" id="id_basic_salary" name="basic_salary" placeholder="Enter basic salary">
+        </div>
+        <div class="form-group">
+            <label for="id_age">Age:</label>
+            <input type="number" class="form-control" id="id_age" name="age" placeholder="Enter age">
+        </div>
+        <div class="form-group">
+            <label for="id_date_of_birth">Date of Birth (YYYY-MM-DD):</label>
+            <input type="date" class="form-control" id="id_date_of_birth" name="date_of_birth">
+        </div>
+        <div class="form-group">
+            <label for="id_passport_details">Passport Details:</label>
+            <input type="text" class="form-control" id="id_passport_details" name="passport_details" placeholder="Enter passport details">
+        </div>
+        <div class="form-group">
+            <label for="id_manager">Manager:</label>
+            <select class="form-control" id="id_manager" name="manager">
+                <option value="">Select manager</option>
+                {% for manager in managers %}
+                <option value="{{ manager.id }}">{{ manager.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Employee</button>
+    </form>
+</div>
+{% endblock %}

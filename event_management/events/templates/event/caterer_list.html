@@ -1,0 +1,67 @@
+{% extends 'event/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Caterers</h2>
+    <a href="{% url 'create_caterer' %}" class="btn btn-primary">Create Caterer</a>
+    <hr>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Contact Details</th>
+                <th>Menu</th>
+                <th>Min Guests</th>
+                <th>Max Guests</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for caterer in caterers %}
+            <tr>
+                <td>{{ caterer.name }}</td>
+                <td>{{ caterer.address }}</td>
+                <td>{{ caterer.contact_details }}</td>
+                <td>{{ caterer.menu }}</td>
+                <td>{{ caterer.min_guests }}</td>
+                <td>{{ caterer.max_guests }}</td>
+                <td>
+                    <a href="{% url 'edit_caterer' caterer.id %}" class="btn btn-primary btn-sm">Edit</a>
+                    <a href="#" data-toggle="modal" data-target="#deleteCatererModal{{ caterer.id }}" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+            <!-- Delete Caterer Modal -->
+            <div class="modal fade" id="deleteCatererModal{{ caterer.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteCatererModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteCatererModalLabel">Confirm Delete</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this caterer?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                            <!-- Use a form to trigger a POST request -->
+                            <form method="post" action="{% url 'delete_caterer' caterer.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            {% empty %}
+            <tr>
+                <td colspan="7">No caterers found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

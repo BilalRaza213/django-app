@@ -1,0 +1,54 @@
+{% extends 'event/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Caterer</h2>
+    <form method="post" id="editCatererForm" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_address">Address:</label>
+            {{ form.address }}
+        </div>
+        <div class="form-group">
+            <label for="id_contact_details">Contact Details:</label>
+            {{ form.contact_details }}
+        </div>
+        <div class="form-group">
+            <label for="id_menu">Menu:</label>
+            {{ form.menu }}
+        </div>
+        <div class="form-group">
+            <label for="id_min_guests">Min Guests:</label>
+            {{ form.min_guests }}
+        </div>
+        <div class="form-group">
+            <label for="id_max_guests">Max Guests:</label>
+            {{ form.max_guests }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update Caterer</button>
+    </form>
+</div>
+
+<script>
+function validateForm() {
+    var form = document.getElementById('editCatererForm');
+    var name = form.elements['name'].value.trim();
+    var address = form.elements['address'].value.trim();
+    var contactDetails = form.elements['contact_details'].value.trim();
+    var menu = form.elements['menu'].value.trim();
+    var minGuests = form.elements['min_guests'].value.trim();
+    var maxGuests = form.elements['max_guests'].value.trim();
+
+    if (name === '' || address === '' || contactDetails === '' || menu === '' || minGuests === '' || maxGuests === '') {
+        alert('All fields are required');
+        return false;
+    }
+
+    return true;
+}
+</script>
+{% endblock %}

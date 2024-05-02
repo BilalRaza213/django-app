@@ -1,0 +1,47 @@
+{% extends 'event/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Edit Employee</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_employee_id">Employee ID:</label>
+            {{ form.employee_id }}
+        </div>
+        <div class="form-group">
+            <label for="id_department">Department:</label>
+            {{ form.department }}
+        </div>
+        <div class="form-group">
+            <label for="id_job_title">Job Title:</label>
+            {{ form.job_title }}
+        </div>
+        <div class="form-group">
+            <label for="id_basic_salary">Basic Salary:</label>
+            {{ form.basic_salary }}
+        </div>
+        <div class="form-group">
+            <label for="id_age">Age:</label>
+            {{ form.age }}
+        </div>
+        <div class="form-group">
+            <label for="id_date_of_birth">Date of Birth (YYYY-MM-DD):</label>
+            {{ form.date_of_birth }}
+        </div>
+        <div class="form-group">
+            <label for="id_passport_details">Passport Details:</label>
+            {{ form.passport_details }}
+        </div>
+        <div class="form-group">
+            <label for="id_manager">Manager:</label>
+            {{ form.manager }}
+        </div>
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'event/base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2>Create Client</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_name">Name:</label>
+            {{ form.name }}
+        </div>
+        <div class="form-group">
+            <label for="id_address">Address:</label>
+            {{ form.address }}
+        </div>
+        <div class="form-group">
+            <label for="id_contact_details">Contact Details:</label>
+            {{ form.contact_details }}
+        </div>
+        <div class="form-group">
+            <label for="id_budget">Budget:</label>
+            {{ form.budget }}
+        </div>
+        <!-- Add more fields as needed -->
+        <button type="submit" class="btn btn-primary">Save Client</button>
+    </form>
+</div>
+{% endblock %}
